@@ -1,0 +1,16 @@
+<h1><%= @idea.title %></h1>
+
+<ul>
+  <li>Problem Solving: <%= @idea.why %></li>
+  <li>Sell Me on It: <%= @idea.copy %></li>
+  <li>Links:</li>
+  <ul>
+    <% @idea.links.each do |link| %>
+    <li><%= link_to link.title, link.url %></li>
+    <li><%= link.notes %></li>
+    <% end %>
+  </ul>
+</ul>
+
+<br>
+<%= link_to "Back to Ideas", ideas_url %>

@@ -1,0 +1,48 @@
+<% method = @idea.persisted? ? "PATCH" : "POST" %>
+<% action = @idea.persisted? ? idea_url(@idea) : ideas_url  %>
+<% title  = @idea.persisted? ? "Edit Idea" : "New Idea" %>
+<% submit = @idea.persisted? ? "Update Idea" : "Create Idea" %>
+
+<h1><%= title %></h1>
+
+<form action="<%= action %>" method="<%= method %>" accept-charset="utf-8">
+  <input type="hidden" name="authenticity_token" value="" id="<%= form_authenticity_token %>">
+
+  <label>What do you call it?
+    <input type="text" name="idea[title]" value="<%= @idea.title %>" id="">
+  </label>
+  <br>
+
+  <label>What is this solving? What is the customer pain? Describe what this does so well and so much better than others:
+    <textarea name="idea[why]" value="<%= @idea.why %>" id="" rows=5 cols=25>What is the purpose of this idea?
+    </textarea>
+  </label>
+  <br>
+
+  <label for="idea_copy">Primary benefit for user:</label>
+  <textarea name="idea[copy]" value="<%= @idea.copy %>" id="" rows=5 cols=25>Sell it to me here.
+
+Why should I use this? What does it solve for me?
+  </textarea>
+  <br>
+
+  <% unless @idea.persisted? %>
+    <% 3.times do |i| %>
+      <h4>Link</h4>
+      <label>Title:
+        <input type="text" name="link[title]">
+      </label>
+      <label>URL:
+        <input type="text" name="link[url]">
+      <label>
+      <br>
+      <label>Notes:
+        <textarea name="link[notes]">Your comments here...</textarea>
+      <label>
+    <% end %>
+  <% end %>
+  <br><br>
+
+
+  <input type="submit" value="<%= submit %>">
+</form>

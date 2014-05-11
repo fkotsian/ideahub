@@ -1,0 +1,7 @@
+<h1>My Ideas</h1>
+<% @ideas.each do |idea| %>
+  <%= render idea %>
+<% end %>
+
+
+<%= link_to "Add New Idea", new_idea_url %>
